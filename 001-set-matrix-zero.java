@@ -43,3 +43,39 @@ class Solution {
     }
 }
 
+/* 
+				2. Second approach would take some space complexity. 
+        We have a col array which will be of size m and a row array of size n
+        traverse through the matrix and set col[i] and row[j] to 1 if current element is 0
+        After the traversal, traverse through the matrix again and check if col[i] OR row[j] is 1, if yes then set matrix[i][j] to 0. 
+
+				Time complexity: O(2*n*m)
+	 			Space complexity: O(m) + O(n)
+*/
+
+class Solution {
+    public void setZeroes(int[][] matrix) {
+        int m = matrix.length;
+        int n = matrix[0].length;
+
+        int[] row = new int[n];
+        int[] col = new int[m];
+        for(int i = 0; i<m;i++){
+            for(int j=0; j<n;j++){
+                if(matrix[i][j]==0){
+                    col[i]=1;
+                    row[j]=1;
+                }
+            }
+        }
+
+        for(int i = 0; i<m;i++){
+            for(int j=0; j<n;j++){
+                if(col[i] == 1 || row[j] == 1){
+                    matrix[i][j]=0;
+                }
+            }
+        }
+    }
+}
+
